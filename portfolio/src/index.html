@@ -6,8 +6,20 @@
   <title>MANU V G's Portfolio</title>
   <link rel="stylesheet" href="styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 </head>
 <body>
+
+  <!-- Dark Mode Toggle -->
+  <div class="dark-mode-toggle">
+    <label class="switch">
+      <input type="checkbox" id="toggleDark" />
+      <span class="slider round"></span>
+    </label>
+  </div>
+
+  <!-- Floating Hire Me Button -->
+  <a href="#contact" class="hire-me-btn">Hire Me</a>
 
   <!-- Header -->
   <header class="navbar">
@@ -21,23 +33,23 @@
 
   <!-- Hero Section -->
   <section class="hero">
-    <div class="hero-text">
-      <h1>Smart Solutions & Creative Code</h1>
+    <div class="hero-text" data-aos="fade-right">
+      <h1>I build <span class="typing"></span></h1>
       <p>Welcome to MANU V G's Portfolio — modern web solutions, AI, and full-stack creativity under one roof.</p>
       <button class="btn-primary">Get Started</button>
     </div>
-    <div class="hero-image">
+    <div class="hero-image" data-aos="fade-left">
       <img src="https://source.unsplash.com/400x400/?technology,code" alt="Hero Image" />
     </div>
   </section>
 
   <!-- Feature Image -->
-  <section class="feature-image">
+  <section class="feature-image" data-aos="zoom-in">
     <img src="https://source.unsplash.com/1200x500/?programming,workspace" alt="Feature Image" />
   </section>
 
   <!-- Partners -->
-  <section class="partners">
+  <section class="partners" data-aos="fade-up">
     <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Nestle_textlogo.png" alt="Nestle" />
     <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" />
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/62/Amazon.com-Logo.svg" alt="Amazon" />
@@ -46,7 +58,7 @@
   </section>
 
   <!-- Services -->
-  <section class="services" id="services">
+  <section class="services" id="services" data-aos="fade-up">
     <div class="service">
       <h4>Frontend Development</h4>
       <p>Modern UIs built using HTML, CSS, Bootstrap & React.js.</p>
@@ -66,7 +78,7 @@
   </section>
 
   <!-- Testimonial -->
-  <section class="testimonial" id="testimonial">
+  <section class="testimonial" id="testimonial" data-aos="flip-left">
     <div class="testimonial-img">
       <img src="https://source.unsplash.com/180x180/?person,businessman" alt="Client" />
     </div>
@@ -79,7 +91,7 @@
   </section>
 
   <!-- Contact CTA -->
-  <section class="contact-cta" id="contact">
+  <section class="contact-cta" id="contact" data-aos="zoom-in-up">
     <div class="cta-text">
       <h2>Let’s Collaborate</h2>
       <p>Got a project idea? Let's discuss and build something awesome together!</p>
@@ -125,6 +137,61 @@
       <p>Privacy Policy | Terms of Use</p>
     </div>
   </footer>
+
+  <!-- AOS Library -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+
+  <!-- Typing Animation -->
+  <script>
+    const words = ["Websites.", "APIs.", "AI Apps.", "Full-Stack Solutions."];
+    let i = 0;
+    let timer;
+
+    function typingEffect() {
+      let word = words[i].split("");
+      const typingSpan = document.querySelector(".typing");
+      function loopTyping() {
+        if (word.length > 0) {
+          typingSpan.innerHTML += word.shift();
+          timer = setTimeout(loopTyping, 100);
+        } else {
+          setTimeout(deletingEffect, 1500);
+        }
+      }
+      loopTyping();
+    }
+
+    function deletingEffect() {
+      let word = words[i].split("");
+      const typingSpan = document.querySelector(".typing");
+      function loopDeleting() {
+        if (word.length > 0) {
+          word.pop();
+          typingSpan.innerHTML = word.join("");
+          timer = setTimeout(loopDeleting, 50);
+        } else {
+          i = (i + 1) % words.length;
+          typingEffect();
+        }
+      }
+      loopDeleting();
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      typingEffect();
+    });
+  </script>
+
+  <!-- Dark Mode Toggle -->
+  <script>
+    const toggle = document.getElementById("toggleDark");
+    toggle.addEventListener("change", () => {
+      document.body.classList.toggle("dark");
+    });
+  </script>
 
 </body>
 </html>
